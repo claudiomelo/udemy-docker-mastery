@@ -71,7 +71,57 @@ Feel free to create issues or PRs if you find a problem with examples in this re
 ## Image layer
 docker image history imageName
 docker image inspect imageName
- 
+
+## TAGS COMMANDS ##
+
+	docker image tag --help
+	docker image tag imageName newTag (claudiomelo/newTag) -> then: 
+	docker image push claudiomelo/newTag (and it will be push to docker hub)
+		Access denied: have to login:
+			docker login
+			docker logout
+
+			cat .docker/config.json (check the auth key was add there)
+
+## Docker. creating images ##
+
+	docker build -f someDockerFile
+		check docker file 1 of the project
+
+	docker image build -t customTag (buil and image with a tag atacched to it)
+
+## Docker file comands ##
+
+	FROM nginx:latest (must be the first line of a docker file) getting the image (required)
+
+	WORKDIR /usr/share/nginx/html -> it is a cd into the folder
+
+	COPY filename filename
+
+	RUN apt-get install something (executes comands on the image...)
+
+	CMD - final comand on the image (required)
+		if the docker file does not have a CMD it gets the CMD from the image on the FROM command
+
+## Build own image ##
+
+
+## Cleaning images ##
+	Using Prune to Keep Your Docker System Clean (YouTube)
+	You can use "prune" commands to clean up images, volumes, build cache, and containers. Examples include:
+
+	- docker image prune to clean up just "dangling" images
+
+	- docker system prune will clean up everything
+
+	- The big one is usually docker image prune -a which will remove all images you're not using. Use docker system df to see space usage.
+
+	Remember each one of those commands has options you can learn with --help.
+
+	Here's a YouTube video I made about it: https://youtu.be/_4QzP7uwtvI
+
+	Lastly, realize that if you're using Docker Toolbox, the Linux VM won't auto-shrink. You'll need to delete it and re-create (make sure anything in docker containers or volumes are backed up). You can recreate the toolbox default VM with docker-machine rm default and then docker-machine create
+
 
 
 
